@@ -2,7 +2,7 @@
 
 The dataset consists of 500 observations. There are two predictors, `x1` and `x2`, generated i.i.d from a standard uniform distribution, with a fixed seed, shifted by `-0.5`. The response variable, `y` has two levels: `True` if `x1^2 -x2^2 > 0` and `False` otherwise.
 
-The definition of `y` makes the decision boundary non-linear in the original predictors. The observations are as follows 
+The definition of `y` makes the decision boundary nonlinear in the original predictors. The observations are as follows 
 
 ![points x1 and x2 with labels](observations.png)
 
@@ -25,7 +25,7 @@ The results obtained are very poor with the following confusion matrix:
 
 Hence, the classifier only classified correctly 43% of the observations.
 
-We repeat the experiment, but now considering a polynomial functions of the predictors, namely, `x1^2` and `x2^2`. The results obtained were significantly better, which is expected, as we are now considering a transformation of the predictors that matches the established decision boundary. The decision boundary is now clearly non-linear as seen in the image below: 
+We repeat the experiment, but now considering a polynomial functions of the predictors, namely, `x1^2` and `x2^2`. The results obtained were significantly better, which is expected, as we are now considering a transformation of the predictors that matches the established decision boundary. The decision boundary is now clearly nonlinear as seen in the image below: 
 
 ![prediction squared standard logistic](prediction_logistic_regression_squared_preds.png)
 
@@ -63,4 +63,28 @@ Just to confirm our suspicion that the squared terms are the main drivers of log
 Only 42.8% of the observations are classified correctly. In fact, adding the interaction term slightly worsens performance compared to using only `x1` and `x2`. This suggests that, for this dataset, the quadratic terms are the most relevant features for capturing the structure of the decision rule.
 
 ### Support Vector Classifier 
+
+We fit a Support Vector Classifier (SVC) on the observations with a standard value of 1 for the regularization parameter. Since the decision boundary obtained by this classifier is linear, the results are not much better when compared to the first experiment with logistic regression. The confusion matrix is as follows:
+
+| Actual \ Predicted | False | True |
+|---|---:|---:|
+| False | 0   | 247 |
+| True  | 0   | 253 |
+
+And the method only classified correctly 50.6% of the observations. This value, likewise for the logistic regression, can be explained by the X shape of the decision rule, and so the best separating hyperplane can only capture correctly around half of the observations.
+
+Although our suspition lies that the best results for this method will come for a nonlinear support vector machine with a polynomial kernel of degree 2. We still try to obtain, via cross-validation, a better value for `C`.   
+
+We perform 5-fold cross-validation for `C` with the values `0.001, 0.01, 0.1, 1, 5, 10, 100`; and the best result comes for `C = 0.001, 0.01, 0.1, 1`, so the change in `C` does not affect the performance.
+
+Following this, and since we can use polynomial kernels, there is no need to manually apply nonlinear transformations to the predictors. We therefore fit an SVM , with the value of `C = 1`, with a degree-2 polynomial kernel. 
+
+By following this approach, our results improve, obtaining the following:
+
+| Actual \ Predicted | False | True |
+|---|---:|---:|
+| False | 239 | 8 |
+| True  | 2   | 251 |
+
+That is, the classifier correctly predicted 98% of the observations, outperforming the logistic regression model that relied on a manually transformed predictor space. This improvement is consistent with a setting in which the classes are well separated, making the classification boundary clear and the observations easy to distinguish. In such cases, an SVC can outperform logistic regression.
 
