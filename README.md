@@ -9,7 +9,7 @@ In this project, we compare the performance of support vector machines (SVMs) an
 
 ## Dataset
 
-The dataset consists of 500 observations. There are two predictors, `x1` and `x2`, generated i.i.d from a standard uniform distribution, with a fixed seed, shifted by `-0.5`. The response variable, `y` has two levels: `True` if `x1^2 -x2^2 > 0` and `False` otherwise.
+The dataset consists of 500 observations. There are two predictors, `x1` and `x2`, generated i.i.d from a standard uniform distribution, with a fixed seed, shifted by `-0.5`. The response variable, `y` has two levels: `True` if `x1^2 - x2^2 > 0` and `False` otherwise.
 
 # Results Summary 
 
