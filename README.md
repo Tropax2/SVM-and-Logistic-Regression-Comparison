@@ -13,7 +13,7 @@ The dataset consists of 500 observations. There are two predictors, `x1` and `x2
 
 # Results Summary 
 
-| Model | Features / Kernel | Tuning | Accuracy |
+| Model | Predictors / Kernel | Tuning | Accuracy |
 |---|---|---|---:|
 | Logistic Regression | x1, x2 | — | 43.0% |
 | Logistic Regression | x1, x2, x1^2, x2^2 | — | 95.4% |
@@ -21,7 +21,7 @@ The dataset consists of 500 observations. There are two predictors, `x1` and `x2
 | SVM (linear) | linear kernel | C = 1 (CV over C had no meaningful effect) | 50.6% |
 | SVM (poly) | polynomial kernel (degree 2) | C = 1 | 98.0% |
 
-It is with no surprise that the degree-2 polynomial SVM achieves the best results. Although we also tested logistic regression with polynomial features, the decision rule is explicitly defined and yields a clear nonlinear separation between classes. In such well-separated settings, SVMs often outperform logistic regression.
+It is with no surprise that the degree-2 polynomial SVM achieves the best results. Although we also tested logistic regression with polynomial predictors, the decision rule is explicitly defined and yields a clear nonlinear separation between classes. In such well-separated settings, SVMs often outperform logistic regression.
 
 ## How to run 
 
